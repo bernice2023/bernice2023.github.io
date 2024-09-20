@@ -1,11 +1,26 @@
 ---
-title: "bernice2023.github.io"
+title: "Bernice Abanda"
+image: /Users/berniceabanda/Downloads/photo.jpeg
+2toc: false
+about: 
+ template: jolla
+ image-shape: round
+ image-width: 17em
+ 
+  links:
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/bernice-abanda/
+    - icon: github
+      text: Github
+      href: https://github.com/bernice2023
 ---
 
-This is a Quarto website.
+Bernice Abanda is a current senior majoring in Economics and Data Science. When not innovating on data platforms, Bernice enjoys spending time watching commentary videos and documentaries, editing software, and hiking.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Education
 
-```{r}
-1 + 1
-```
+Scripps College | Claremont, CA
+| August 2021 - May 2025
+
+
