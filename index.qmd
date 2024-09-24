@@ -1,11 +1,11 @@
 ---
 title: "Bernice Abanda"
 image: /Users/berniceabanda/Downloads/photo.jpeg
-2toc: false
+
 about: 
  template: jolla
  image-shape: round
- image-width: 17em
+ image-width: 10em
  
   links:
     - icon: linkedin
