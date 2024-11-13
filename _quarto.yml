@@ -15,8 +15,8 @@ website:
         menu: 
          - text: "Shakespeare"
            href: shakespearse.html
-         - text: "Netflix_Data_Analysis"
-           
+         - text: "Simulaion"
+           href: project3.html
       
 
 format:
