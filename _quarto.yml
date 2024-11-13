@@ -3,18 +3,27 @@ project:
   output-dir: docs
 
 website:
-  title: "bernice2023.github.io"
+  favicon: bluebox.jpeg
+  title: "Bernice Abanda"
   navbar:
-    left:
+    right:
       - href: index.qmd
         text: Home
       - about.qmd
+      - projects.qmd
+      - text: "Data Viz"
+        menu: 
+         - text: "Shakespeare"
+           href: shakespearse.html
+         - text: "Netflix_Data_Analysis"
+           
+      
 
 format:
   html:
-    theme: cosmo
+    theme: lumen
     css: styles.css
     toc: true
-
+    page-layout: full
 
 

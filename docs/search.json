@@ -4,20 +4,76 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "READING\n\nBEADING\n\nHIKING\n\nCOMMUNITY: club involvments"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Bernice Abanda",
     "section": "",
-    "text": "Bernice Abanda is a current senior majoring in Economics and Data Science. When not innovating on data platforms, Bernice enjoys spending time watching commentary videos and documentaries, editing software, and hiking."
+    "text": "Bernice Abanda is a current senior majoring in Economics and Data Science. When not in class and or innovating on data platforms, Bernice enjoys spending time watching commentary videos and documentaries, editing software, and hiking."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
     "title": "Bernice Abanda",
     "section": "Education",
-    "text": "Education\nScripps College | Claremont, CA BA in Economics | August 2021 - May 2025"
+    "text": "Education\nScripps College | Claremont, CA | August 2021 - May 2025"
+  },
+  {
+    "objectID": "shakespearse.html",
+    "href": "shakespearse.html",
+    "title": "Shakespeare",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(scales)\nlibrary(tidytext)\nlibrary(devtools)\nlibrary(ggwordcloud)\nlibrary(png)\nlibrary(svglite)\n\n\nhamlet &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-09-17/hamlet.csv')\n\nRows: 4217 Columns: 5\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): act, scene, character, dialogue\ndbl (1): line_number\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nmacbeth &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-09-17/macbeth.csv')\n\nRows: 2553 Columns: 5\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): act, scene, character, dialogue\ndbl (1): line_number\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nromeo_juliet &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-09-17/romeo_juliet.csv')\n\nRows: 3282 Columns: 5\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): act, scene, character, dialogue\ndbl (1): line_number\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nview(hamlet)\n\n\nview(macbeth)\n\n\nview(romeo_juliet)\n\n\n#wordcloud2(demoFreq, size = 0.7, shape = 'star')\n\n\nromeo_juliet &lt;- romeo_juliet |&gt;  \n  filter(character %in% c(\"Romeo\",\"Juliet\")) \n\n\n# Create a custom list of words to exclude\ncustom_stop_words &lt;- c(\"thou\", \"thy\", \"thee\", \"thine\", \"art\", \"hast\", \"dost\", \"ere\", \"o\",\"hath\")\n\nword_counts &lt;- romeo_juliet %&gt;%\n  unnest_tokens(word, dialogue) %&gt;%\n  anti_join(stop_words) %&gt;%  # Remove common stop words\n  filter(!str_detect(word, \"^[0-9]+$\")) %&gt;%  # Remove numbers\n  filter(!word %in% custom_stop_words) %&gt;%  # Remove custom words\n  count(character, word, sort = TRUE)\n\nJoining with `by = join_by(word)`\n\n\n\ncombined_word_counts &lt;- word_counts %&gt;%\n  group_by(word, character) %&gt;%\n  summarise(n = sum(n)) %&gt;%\n  arrange(desc(n)) \n\n`summarise()` has grouped output by 'word'. You can override using the\n`.groups` argument.\n\ncombined_word_counts\n\n# A tibble: 1,973 × 3\n# Groups:   word [1,662]\n   word   character     n\n   &lt;chr&gt;  &lt;chr&gt;     &lt;int&gt;\n 1 love   Romeo        46\n 2 romeo  Juliet       36\n 3 love   Juliet       32\n 4 night  Juliet       30\n 5 death  Romeo        21\n 6 nurse  Juliet       20\n 7 sweet  Juliet       16\n 8 fair   Romeo        15\n 9 juliet Romeo        15\n10 mine   Romeo        14\n# ℹ 1,963 more rows\n\n\n\njuliet &lt;- combined_word_counts |&gt; \n  filter(character == \"Juliet\")\n\n\njuliet  |&gt; \n  ggplot(aes(label = word, size = n, color = n)) +\n  ggwordcloud::geom_text_wordcloud()\n\nWarning in wordcloud_boxes(data_points = points_valid_first, boxes = boxes, :\nSome words could not fit on page. They have been placed at their original\npositions.\n\n\n\n\n\n\n\n\n\n\nromeo &lt;- combined_word_counts |&gt; \n  filter(character == \"Romeo\")\n\n\nset.seed(42)\np1_ro &lt;- ggplot(\n  romeo,\n  aes(\n    label = word, size = n,color = n\n  )\n) +\n  geom_text_wordcloud_area() +\n  scale_size_area(max_size = 20) +\n  theme_minimal() +\n  scale_color_gradient(low = \"#FF69B4\", high = \"#C41E3A\")\np1_ro\n\nWarning in wordcloud_boxes(data_points = points_valid_first, boxes = boxes, :\nSome words could not fit on page. They have been placed at their original\npositions."
+  },
+  {
+    "objectID": "projects.html#editor-visual",
+    "href": "projects.html#editor-visual",
+    "title": "Bernice Abanda",
+    "section": "editor: visual",
+    "text": "editor: visual"
+  },
+  {
+    "objectID": "project3.html",
+    "href": "project3.html",
+    "title": "project3_simulation",
+    "section": "",
+    "text": "Description of Plan\nThis project simulates a college room draw process to estimate the probability of getting a room in the Fancy Dorm. Each student in a given class year is randomly assigned a number to determine their priority in selecting a room, with lower numbers picking first. For this simulation, I’ll focus on sophomores assigned numbers between 401 and 800. I will simulate multiple rounds of the room draw process, where the probability of getting a Fancy Dorm spot depends on their draw number and dorm availability.\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(purrr)\nlibrary(ggplot2)\n\n# Function to simulate room draw for one iteration\nsimulate_draw &lt;- function() {\n  \n  sophomores &lt;- data.frame(student_id = 1:400, \n                           draw_number = sample(401:800, 400))\n  # Check who gets into Fancy Dorm \n  fancy_dorm_cutoff &lt;- 450  \n  sophomores &lt;- sophomores %&gt;%\n    mutate(in_fancy_dorm = ifelse(draw_number &lt;= fancy_dorm_cutoff, TRUE, FALSE))\n  mean(sophomores$in_fancy_dorm)  # Return proportion of those who get in\n}\n\n# Run simulation over many iterations\nresults &lt;- map_dbl(1:1000, ~ simulate_draw())  # 1000 simulations\n\n# Plot results\nggplot(data.frame(probability = results), aes(x = probability)) +\n  geom_histogram(binwidth = 0.01) +\n  labs(title = \"Probability of Getting into Fancy Dorm\", x = \"Probability\", y = \"Frequency\")\n\n\n\n\n\n\n\n\nInterpretation of Plot: The plotillustrates the probability distribution of securing a spot in Fancy Dorm over multiple room draw simulations. It shows the likelihood of different outcomes, offering insight into how lucky or unlucky a student would need to be to get a preferred room. This visual can help students understand the chances of getting into Fancy Dorm based on their draw number.\nEnd-of-Project Summary: This simulation modeled the room draw process to estimate the probability of securing a room in Fancy Dorm. By running 1,000 iterations, we observed the distribution of probabilities, which can inform students about their chances. This method demonstrates how random allocation in room selection impacts student outcomes and highlights the importance of draw number in college housing lotteries."
+  },
+  {
+    "objectID": "Netflix_DescriptionofData.html",
+    "href": "Netflix_DescriptionofData.html",
+    "title": "Netflix_Data_Analysis",
+    "section": "",
+    "text": "This bar plot shows the number of Netflix titles containing the words “Love” and “Adventure.” We see that there are more titles containing the word “Love” than “Adventure,” indicating a possible trend in romantic or relationship-based content on Netflix. This gives us insights into popular themes among Netflix titles.\n\n\n\nThis histogram illustrates the distribution of Netflix title description lengths. The majority of descriptions are between 100 and 200 characters long, with a few longer descriptions. This suggests that Netflix descriptions tend to be concise, likely focusing on providing just enough information to capture viewers’ attention without overwhelming them."
+  },
+  {
+    "objectID": "Netflix_DescriptionofData.html#netflix-data-analysis",
+    "href": "Netflix_DescriptionofData.html#netflix-data-analysis",
+    "title": "Netflix_Data_Analysis",
+    "section": "",
+    "text": "This bar plot shows the number of Netflix titles containing the words “Love” and “Adventure.” We see that there are more titles containing the word “Love” than “Adventure,” indicating a possible trend in romantic or relationship-based content on Netflix. This gives us insights into popular themes among Netflix titles.\n\n\n\nThis histogram illustrates the distribution of Netflix title description lengths. The majority of descriptions are between 100 and 200 characters long, with a few longer descriptions. This suggests that Netflix descriptions tend to be concise, likely focusing on providing just enough information to capture viewers’ attention without overwhelming them."
+  },
+  {
+    "objectID": "netflix_dataanalysis1.html",
+    "href": "netflix_dataanalysis1.html",
+    "title": "netflix_dataanalysis1",
+    "section": "",
+    "text": "```{r}\n}library(readr) netflix_titles &lt;- readr::read_csv(’https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv’)) # Check the structure of the dataset str(netflix_titles)\n```"
+  },
+  {
+    "objectID": "netflix_dataanalysis1.html#section",
+    "href": "netflix_dataanalysis1.html#section",
+    "title": "netflix_dataanalysis1",
+    "section": "",
+    "text": "```{r}\n}library(readr) netflix_titles &lt;- readr::read_csv(’https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv’)) # Check the structure of the dataset str(netflix_titles)\n```"
+  },
+  {
+    "objectID": "netflix_dataanalysis1.html#str_-functions-regular-expressions",
+    "href": "netflix_dataanalysis1.html#str_-functions-regular-expressions",
+    "title": "netflix_dataanalysis1",
+    "section": "3 str_*() functions + regular expressions",
+    "text": "3 str_*() functions + regular expressions\nlibrary(stringr)"
   }
 ]

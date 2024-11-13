@@ -1,0 +1,41 @@
+---
+title: "project3_simulation"
+name: Bernice Abanda
+format: html
+editor: visual
+---
+
+Description of Plan
+
+This project simulates a college room draw process to estimate the probability of getting a room in the Fancy Dorm. Each student in a given class year is randomly assigned a number to determine their priority in selecting a room, with lower numbers picking first. For this simulation, I’ll focus on sophomores assigned numbers between 401 and 800. I will simulate multiple rounds of the room draw process, where the probability of getting a Fancy Dorm spot depends on their draw number and dorm availability.
+
+```{r}
+library(dplyr)
+library(purrr)
+library(ggplot2)
+
+# Function to simulate room draw for one iteration
+simulate_draw <- function() {
+  
+  sophomores <- data.frame(student_id = 1:400, 
+                           draw_number = sample(401:800, 400))
+  # Check who gets into Fancy Dorm 
+  fancy_dorm_cutoff <- 450  
+  sophomores <- sophomores %>%
+    mutate(in_fancy_dorm = ifelse(draw_number <= fancy_dorm_cutoff, TRUE, FALSE))
+  mean(sophomores$in_fancy_dorm)  # Return proportion of those who get in
+}
+
+# Run simulation over many iterations
+results <- map_dbl(1:1000, ~ simulate_draw())  # 1000 simulations
+
+# Plot results
+ggplot(data.frame(probability = results), aes(x = probability)) +
+  geom_histogram(binwidth = 0.01) +
+  labs(title = "Probability of Getting into Fancy Dorm", x = "Probability", y = "Frequency")
+
+```
+
+**Interpretation of Plot**: The plotillustrates the probability distribution of securing a spot in Fancy Dorm over multiple room draw simulations. It shows the likelihood of different outcomes, offering insight into how lucky or unlucky a student would need to be to get a preferred room. This visual can help students understand the chances of getting into Fancy Dorm based on their draw number.
+
+**End-of-Project Summary**: This simulation modeled the room draw process to estimate the probability of securing a room in Fancy Dorm. By running 1,000 iterations, we observed the distribution of probabilities, which can inform students about their chances. This method demonstrates how random allocation in room selection impacts student outcomes and highlights the importance of draw number in college housing lotteries.

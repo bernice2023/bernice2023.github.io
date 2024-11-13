@@ -1,0 +1,59 @@
+---
+title: "netflix_dataanalysis1"
+format: html
+editor: visual
+---
+
+## 
+
+\`\`\`{r}
+
+}library(readr) netflix_titles \<- readr::read_csv('[https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv')](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv')) \# Check the structure of the dataset str(netflix_titles)
+
+\`\`\`
+
+# View the first few rows of the dataset
+
+\`\`\`{r}
+
+}head(netflix_titles)
+
+summary(netflix_titles)
+
+\`\`\`
+
+## 3 str\_\*() functions + regular expressions
+
+library(stringr)
+
+# 1) Detect titles containing the word "Love"
+
+netflix_titles$has_love <- str_detect(netflix_titles$title, "Love") sum(netflix_titles\$has_love) \# Count of titles with "Love"
+
+# 2) str_detect() (Detect titles containing the word "Adventure" )
+
+netflix_titles$has_love <- str_detect(netflix_titles$title, "\\bLove\\b") netflix_titles$has_adventure <- str_detect(netflix_titles$title, "\\bAdventure\\b")
+
+# 3) str_replace() (to remove special characters)
+
+netflix_titles$title_no_special_chars <- str_replace(netflix_titles$title, "\[!\\?&\]", "") head(netflix_titles\$title_no_special_chars)
+
+##VISUALIZING DATA library(ggplot2) \# Detect titles containing the words "Love" and "Adventure" netflix_titles$has_love <- str_detect(netflix_titles$title, "\\bLove\\b") netflix_titles$has_adventure <- str_detect(netflix_titles$title, "\\bAdventure\\b")
+
+# Create a summary of the counts
+
+word_counts \<- data.frame( Word = c("Love", "Adventure"), Count = c(sum(netflix_titles$has_love), sum(netflix_titles$has_adventure)) )
+
+# Bar plot of titles containing certain words
+
+ggplot(word_counts, aes(x = Word, y = Count, fill = Word)) + geom_bar(stat = "identity") + labs(title = "Number of Netflix Titles Containing Certain Words", x = "Word", y = "Count", fill = "Word") + theme_minimal()
+
+# Calculate the length of each description
+
+netflix_titles$desc_length <- str_length(netflix_titles$description)
+
+# Histogram of description lengths
+
+ggplot(netflix_titles, aes(x = desc_length)) + geom_histogram(binwidth = 50, fill = "steelblue", color = "black") + labs(title = "Distribution of Netflix Title Description Lengths", x = "Description Length (Number of Characters)", y = "Frequency") + theme_minimal()
+
+install.packages("quarto") quarto::quarto_render("Netflix_DescriptionofData.qmd")

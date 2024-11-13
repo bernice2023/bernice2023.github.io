@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bernice Abanda - About</title>
+<title>netflix_dataanalysis1 – Bernice Abanda</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -84,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -102,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-viz" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-viz" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Data Viz</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data-viz">    
@@ -115,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -124,20 +153,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#view-the-first-few-rows-of-the-dataset" id="toc-view-the-first-few-rows-of-the-dataset" class="nav-link" data-scroll-target="#view-the-first-few-rows-of-the-dataset">View the first few rows of the dataset</a>
+  <ul class="collapse">
+  <li><a href="#str_-functions-regular-expressions" id="toc-str_-functions-regular-expressions" class="nav-link" data-scroll-target="#str_-functions-regular-expressions">3 str_*() functions + regular expressions</a></li>
+  </ul></li>
+  <li><a href="#detect-titles-containing-the-word-love" id="toc-detect-titles-containing-the-word-love" class="nav-link" data-scroll-target="#detect-titles-containing-the-word-love">1) Detect titles containing the word “Love”</a></li>
+  <li><a href="#str_detect-detect-titles-containing-the-word-adventure" id="toc-str_detect-detect-titles-containing-the-word-adventure" class="nav-link" data-scroll-target="#str_detect-detect-titles-containing-the-word-adventure">2) str_detect() (Detect titles containing the word “Adventure” )</a></li>
+  <li><a href="#str_replace-to-remove-special-characters" id="toc-str_replace-to-remove-special-characters" class="nav-link" data-scroll-target="#str_replace-to-remove-special-characters">3) str_replace() (to remove special characters)</a></li>
+  <li><a href="#create-a-summary-of-the-counts" id="toc-create-a-summary-of-the-counts" class="nav-link" data-scroll-target="#create-a-summary-of-the-counts">Create a summary of the counts</a></li>
+  <li><a href="#bar-plot-of-titles-containing-certain-words" id="toc-bar-plot-of-titles-containing-certain-words" class="nav-link" data-scroll-target="#bar-plot-of-titles-containing-certain-words">Bar plot of titles containing certain words</a></li>
+  <li><a href="#calculate-the-length-of-each-description" id="toc-calculate-the-length-of-each-description" class="nav-link" data-scroll-target="#calculate-the-length-of-each-description">Calculate the length of each description</a></li>
+  <li><a href="#histogram-of-description-lengths" id="toc-histogram-of-description-lengths" class="nav-link" data-scroll-target="#histogram-of-description-lengths">Histogram of description lengths</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">netflix_dataanalysis1</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -149,15 +195,55 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<pre><code>READING
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>```{r}</p>
+<p>}library(readr) netflix_titles &lt;- readr::read_csv(’<a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv'">https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv’)</a>) # Check the structure of the dataset str(netflix_titles)</p>
+<p>```</p>
+</section>
+<section id="view-the-first-few-rows-of-the-dataset" class="level1">
+<h1>View the first few rows of the dataset</h1>
+<p>```{r}</p>
+<p>}head(netflix_titles)</p>
+<p>summary(netflix_titles)</p>
+<p>```</p>
+<section id="str_-functions-regular-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="str_-functions-regular-expressions">3 str_*() functions + regular expressions</h2>
+<p>library(stringr)</p>
+</section>
+</section>
+<section id="detect-titles-containing-the-word-love" class="level1">
+<h1>1) Detect titles containing the word “Love”</h1>
+<p>netflix_titles<span class="math inline">\(has_love &lt;- str_detect(netflix_titles\)</span>title, “Love”) sum(netflix_titles$has_love) # Count of titles with “Love”</p>
+</section>
+<section id="str_detect-detect-titles-containing-the-word-adventure" class="level1">
+<h1>2) str_detect() (Detect titles containing the word “Adventure” )</h1>
+<p>netflix_titles<span class="math inline">\(has_love &lt;- str_detect(netflix_titles\)</span>title, “\bLove\b”) netflix_titles<span class="math inline">\(has_adventure &lt;- str_detect(netflix_titles\)</span>title, “\bAdventure\b”)</p>
+</section>
+<section id="str_replace-to-remove-special-characters" class="level1">
+<h1>3) str_replace() (to remove special characters)</h1>
+<p>netflix_titles<span class="math inline">\(title_no_special_chars &lt;- str_replace(netflix_titles\)</span>title, “[!\?&amp;]”, ““) head(netflix_titles$title_no_special_chars)</p>
+<p>##VISUALIZING DATA library(ggplot2) # Detect titles containing the words “Love” and “Adventure” netflix_titles<span class="math inline">\(has_love &lt;- str_detect(netflix_titles\)</span>title, “\bLove\b”) netflix_titles<span class="math inline">\(has_adventure &lt;- str_detect(netflix_titles\)</span>title, “\bAdventure\b”)</p>
+</section>
+<section id="create-a-summary-of-the-counts" class="level1">
+<h1>Create a summary of the counts</h1>
+<p>word_counts &lt;- data.frame( Word = c(“Love”, “Adventure”), Count = c(sum(netflix_titles<span class="math inline">\(has_love), sum(netflix_titles\)</span>has_adventure)) )</p>
+</section>
+<section id="bar-plot-of-titles-containing-certain-words" class="level1">
+<h1>Bar plot of titles containing certain words</h1>
+<p>ggplot(word_counts, aes(x = Word, y = Count, fill = Word)) + geom_bar(stat = “identity”) + labs(title = “Number of Netflix Titles Containing Certain Words”, x = “Word”, y = “Count”, fill = “Word”) + theme_minimal()</p>
+</section>
+<section id="calculate-the-length-of-each-description" class="level1">
+<h1>Calculate the length of each description</h1>
+<p>netflix_titles<span class="math inline">\(desc_length &lt;- str_length(netflix_titles\)</span>description)</p>
+</section>
+<section id="histogram-of-description-lengths" class="level1">
+<h1>Histogram of description lengths</h1>
+<p>ggplot(netflix_titles, aes(x = desc_length)) + geom_histogram(binwidth = 50, fill = “steelblue”, color = “black”) + labs(title = “Distribution of Netflix Title Description Lengths”, x = “Description Length (Number of Characters)”, y = “Frequency”) + theme_minimal()</p>
+<p>install.packages(“quarto”) quarto::quarto_render(“Netflix_DescriptionofData.qmd”)</p>
 
-BEADING
 
-HIKING
-
-COMMUNITY: club involvments</code></pre>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -195,18 +281,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -238,7 +313,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -246,7 +343,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

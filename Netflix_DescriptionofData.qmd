@@ -1,0 +1,15 @@
+---
+title: "Netflix_Data_Analysis"
+format: html
+editor: visual
+---
+
+## Netflix Data Analysis
+
+### Description for Bar Plot:
+
+This bar plot shows the number of Netflix titles containing the words "Love" and "Adventure." We see that there are more titles containing the word "Love" than "Adventure," indicating a possible trend in romantic or relationship-based content on Netflix. This gives us insights into popular themes among Netflix titles.
+
+### Description for Histogram:
+
+This histogram illustrates the distribution of Netflix title description lengths. The majority of descriptions are between 100 and 200 characters long, with a few longer descriptions. This suggests that Netflix descriptions tend to be concise, likely focusing on providing just enough information to capture viewers' attention without overwhelming them.
