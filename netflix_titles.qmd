@@ -1,0 +1,77 @@
+---
+name: Bernice Abanda
+title: "netflix_titles"
+editor: source
+---
+
+```{r}
+library(tidytuesdayR)
+library(readr)
+
+# Load the dataset
+netflix_titles <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-20/netflix_titles.csv')
+
+```
+
+Observe Structure of Data Set
+
+```{r}
+str(netflix_titles)  # To see the structure of the dataset
+head(netflix_titles)  # To view the first few rows of the dataset
+
+```
+Detecting Titles in Dataset
+
+```{r}
+summary(netflix_titles)
+
+library(stringr)
+
+# Find titles containing the word "Love"
+netflix_titles$has_love <- str_detect(netflix_titles$title, "Love")
+sum(netflix_titles$has_love)  # Count number of titles with "Love"
+
+# Find titles containing the word "War"
+netflix_titles$has_war <- str_detect(netflix_titles$title, "War")
+sum(netflix_titles$has_war)  # Count number of titles with "War"
+
+# Find  titles containing the word "Adventure"
+netflix_titles$has_adventure <- str_detect(netflix_titles$title, "Adventure")
+sum(netflix_titles$has_adventure)  # Count number of titles with "Adventure"
+```
+Counting Genres
+
+```{r}
+netflix_titles$genres <- str_extract(netflix_titles$listed_in, "(Drama|Comedy|Horror)")
+table(netflix_titles$genres)
+```
+
+Analyze Description Length
+```{r}
+netflix_titles$desc_length <- str_length(netflix_titles$description)
+summary(netflix_titles$desc_length)
+```
+
+Bar Plot
+```{r}
+library(ggplot2)
+
+# Create a data frame of word counts
+word_counts <- data.frame(
+  Category = c("Love", "War", "Adventure"),
+  Count = c(sum(netflix_titles$has_love), sum(netflix_titles$has_war), sum(netflix_titles$has_adventure))
+)
+
+# Plot the data
+ggplot(word_counts, aes(x = Category, y = Count, fill = Category)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Count of Titles Containing Specific Words", x = "Category", y = "Count")
+```
+
+Histogram
+```{r}
+ggplot(netflix_titles, aes(x = desc_length)) +
+  geom_histogram(binwidth = 10, fill = "blue", color = "white") +
+  labs(title = "Distribution of Description Lengths", x = "Description Length", y = "Frequency")
+```
+

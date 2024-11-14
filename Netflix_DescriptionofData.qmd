@@ -1,5 +1,6 @@
 ---
 title: "Netflix_Data_Analysis"
+name: Bernice Abanda
 format: html
 editor: visual
 ---
