@@ -17,7 +17,6 @@ website:
            href: shakespearse.html
          - text: "Netflix Titles Analysis"
            href: netflix_titles.html
-               href: Netflix_DescriptionofData.html
          - text: "Simulation"
            href: project3.html
       
