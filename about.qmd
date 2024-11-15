@@ -4,11 +4,15 @@ title: "About"
 
 
 ```
-READING
+READING:
+
 
 BEADING
 
-HIKING
+HIKING:
+I love hiking
+{{< include /Users/berniceabanda/git/bernice2023.github.io/hike.JPG >}}
 
 COMMUNITY: club involvments
+
 ```
