@@ -20,6 +20,7 @@ str(netflix_titles)  # To see the structure of the dataset
 head(netflix_titles)  # To view the first few rows of the dataset
 
 ```
+
 Detecting Titles in Dataset
 
 ```{r}
@@ -39,6 +40,7 @@ sum(netflix_titles$has_war)  # Count number of titles with "War"
 netflix_titles$has_adventure <- str_detect(netflix_titles$title, "Adventure")
 sum(netflix_titles$has_adventure)  # Count number of titles with "Adventure"
 ```
+
 Counting Genres
 
 ```{r}
@@ -47,12 +49,14 @@ table(netflix_titles$genres)
 ```
 
 Analyze Description Length
+
 ```{r}
 netflix_titles$desc_length <- str_length(netflix_titles$description)
 summary(netflix_titles$desc_length)
 ```
 
 Bar Plot
+
 ```{r}
 library(ggplot2)
 
@@ -68,10 +72,18 @@ ggplot(word_counts, aes(x = Category, y = Count, fill = Category)) +
   labs(title = "Count of Titles Containing Specific Words", x = "Category", y = "Count")
 ```
 
+### **Description for Bar Plot:** 
+
+This bar plot shows the number of Netflix titles containing the words “Love” and “Adventure.” We see that there are more titles containing the word “Love” than “Adventure,” indicating a possible trend in romantic or relationship-based content on Netflix. This gives us insights into popular themes among Netflix titles.
+
 Histogram
+
 ```{r}
 ggplot(netflix_titles, aes(x = desc_length)) +
   geom_histogram(binwidth = 10, fill = "blue", color = "white") +
   labs(title = "Distribution of Description Lengths", x = "Description Length", y = "Frequency")
 ```
 
+### **Description for Histogram:** 
+
+This histogram illustrates the distribution of Netflix title description lengths. The majority of descriptions are between 100 and 200 characters long, with a few longer descriptions. This suggests that Netflix descriptions tend to be concise, likely focusing on providing just enough information to capture viewers’ attention without overwhelming them.
