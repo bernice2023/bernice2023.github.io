@@ -165,11 +165,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description-for-bar-plot" id="toc-description-for-bar-plot" class="nav-link active" data-scroll-target="#description-for-bar-plot"><strong>Description for Bar Plot:</strong></a></li>
+  <li><a href="#description-for-histogram" id="toc-description-for-histogram" class="nav-link" data-scroll-target="#description-for-histogram"><strong>Description for Histogram:</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -178,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -343,6 +350,9 @@ Comedy  Drama Horror
 </div>
 </div>
 </div>
+<section id="description-for-bar-plot" class="level3">
+<h3 class="anchored" data-anchor-id="description-for-bar-plot"><strong>Description for Bar Plot:</strong></h3>
+<p>This bar plot shows the number of Netflix titles containing the words “Love” and “Adventure.” We see that there are more titles containing the word “Love” than “Adventure,” indicating a possible trend in romantic or relationship-based content on Netflix. This gives us insights into popular themes among Netflix titles.</p>
 <p>Histogram</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(netflix_titles, <span class="fu">aes</span>(<span class="at">x =</span> desc_length)) <span class="sc">+</span></span>
@@ -356,8 +366,13 @@ Comedy  Drama Horror
 </div>
 </div>
 </div>
+</section>
+<section id="description-for-histogram" class="level3">
+<h3 class="anchored" data-anchor-id="description-for-histogram"><strong>Description for Histogram:</strong></h3>
+<p>This histogram illustrates the distribution of Netflix title description lengths. The majority of descriptions are between 100 and 200 characters long, with a few longer descriptions. This suggests that Netflix descriptions tend to be concise, likely focusing on providing just enough information to capture viewers’ attention without overwhelming them.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
