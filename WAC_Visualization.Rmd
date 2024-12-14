@@ -1,0 +1,118 @@
+---
+title: "WAC Data Visualozation"
+author: "Bernice Abanda"
+date: "2024-12-14"
+output: html_document
+---
+```{r}
+library(tidyr)
+library(DBI)
+library(RMariaDB)
+library(dplyr)
+library(dbplyr)
+```
+
+```{r}
+con_wai <- dbConnect(
+  MariaDB(), host = 'scidb.smith.edu',
+  user = "waiuser", password = 'smith_waiDB',
+  dbname = 'wai'
+)
+
+Measurements <- tbl(con_wai, 'Measurements')
+PI_Info <- tbl(con_wai, 'PI_Info')
+Subjects <- tbl(con_wai, 'Subjects')
+
+# collect(Measurements)
+```
+
+#Duplicate figure 1 from Voss 2020
+```{r}
+sql_ident <- "
+  SELECT Identifier, COUNT(Identifier)
+  FROM Measurements
+  GROUP BY Identifier
+"
+
+"SELECT DISTINCT Identifier
+  FROM Measurements"
+
+ident <- as_tibble(dbGetQuery(con_wai, sql_ident))
+ident$`Identifier`[31:43]
+```
+
+
+# Query the data 
+```{r}
+sql_query <- "
+  SELECT
+    meas.Identifier,
+    meas.Frequency,
+    AVG(meas.Absorbance) AS MeanAbsorbance
+  FROM Measurements AS meas
+  WHERE meas.Identifier IN (
+      'Abur_2014', 'Feeney_2017', 'Groon_2015', 'Lewis_2015', 'Liu_2008',
+      'Rosowski_2012', 'Shahnaz_2006', 'Shaver_2013', 'Sun_2023', 'Voss_1994',
+      'Voss_2010', 'Werner_2010'
+  )
+  AND meas.Frequency BETWEEN 0 AND 8000
+  GROUP BY meas.Identifier, meas.Frequency
+  HAVING AVG(meas.Absorbance) BETWEEN 0 AND 1
+  ORDER BY meas.Identifier, meas.Frequency;
+"
+
+# Execute query and load data into R
+plot_data <- dbGetQuery(con_wai, sql_query)
+```
+
+
+
+# Plot filtered data
+```{r}
+library(ggplot2)
+ggplot(plot_data, aes(x = Frequency, y = MeanAbsorbance, color = Identifier)) +
+  geom_line() +
+  labs(
+    title = "(Mean Absorbance from Each Publication in WAI database)",
+    x = "Frequency (Hz)",
+    y = "Mean Absorbance",
+    color = "Publication"
+  ) 
+```
+
+
+##PART 2
+```{r}
+sql_group_query <- "
+SELECT
+  Subjects.Sex AS sex,
+  Subjects.Race AS race,
+  Subjects.Ethnicity AS ethnicity,
+  Subjects.Identifier,
+  Measurements.Frequency AS freq,
+  AVG(Measurements.Absorbance) AS mean_absorbance
+FROM Subjects
+JOIN Measurements ON Subjects.SubjectNumber = Measurements.SubjectNumber 
+WHERE Subjects.Identifier = 'Aithal_2013' AND Measurements.Identifier = 'Aithal_2013'
+GROUP BY Subjects.Sex, Subjects.Race, Subjects.Ethnicity, Measurements.Frequency
+
+"
+```
+
+
+## Plot by group (e.g., Sex)
+```{r}
+##library(ggplot2)
+##ggplot(plot_data, aes(x = frequency, y = absorbance, color = ethnicity)) +
+##  geom_line() +
+ ## labs(
+ ##   title = "(Mean Absorbance by Ethnicity)",
+ ##   x = "Frequency (Hz)",
+ ##   y = "Mean Absorbance",
+ ##   color = "Sex")
+
+
+```
+
+
+
