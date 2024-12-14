@@ -1,0 +1,26 @@
+---
+title: "project5"
+author: "Bernice Abanda"
+format: revealjs
+editor: visual
+---
+
+title: "The Making of WAC Visualization"
+author: "Bernice Abanda"
+subtitle: "date of presentation"
+format:
+revealjs:
+scrollable: true
+slide-number: true
+show-slide-number: all
+embed-resources: true
+execute:
+echo: true
+warning: false
+message: false
+
+##Using SQL to query the [Wideband Acoustic Immittance (WAI) Database](https://www.science.smith.edu/wai-database/)
+
+![](https://www.science.smith.edu/wai-database/home/about/)
+
+##SCREAMING, CRYING, THROWING UP
