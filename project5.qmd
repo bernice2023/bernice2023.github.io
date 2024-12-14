@@ -19,8 +19,18 @@ echo: true
 warning: false
 message: false
 
-##Using SQL to query the [Wideband Acoustic Immittance (WAI) Database](https://www.science.smith.edu/wai-database/)
+##My Favorite Project to Work on
+
+Netflix titles
+
+##What I liked about my Favorite Project
+
+##My Least Favorite Project to Work on
+
+Using SQL to query the [Wideband Acoustic Immittance (WAI) Database](https://www.science.smith.edu/wai-database/)
 
 ![](https://www.science.smith.edu/wai-database/home/about/)
 
-##SCREAMING, CRYING, THROWING UP
+##What I Learned From my least Favorite Project
+
+##How I would approach both projects differently

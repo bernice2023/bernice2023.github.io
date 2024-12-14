@@ -2,7 +2,7 @@
 title: "WAC Data Visualozation"
 author: "Bernice Abanda"
 date: "2024-12-14"
-output: html_document
+format: html
 ---
 ```{r}
 library(tidyr)
@@ -97,19 +97,21 @@ WHERE Subjects.Identifier = 'Aithal_2013' AND Measurements.Identifier = 'Aithal_
 GROUP BY Subjects.Sex, Subjects.Race, Subjects.Ethnicity, Measurements.Frequency
 
 "
+
+plot_data2 <- dbGetQuery(con_wai, sql_group_query)
 ```
 
 
 ## Plot by group (e.g., Sex)
 ```{r}
-##library(ggplot2)
-##ggplot(plot_data, aes(x = frequency, y = absorbance, color = ethnicity)) +
-##  geom_line() +
- ## labs(
- ##   title = "(Mean Absorbance by Ethnicity)",
- ##   x = "Frequency (Hz)",
- ##   y = "Mean Absorbance",
- ##   color = "Sex")
+library(ggplot2)
+ggplot(plot_data2, aes(x = freq, y = mean_absorbance, color = sex)) +
+geom_line() +
+labs(
+  title = "(Mean Absorbance by Ethnicity)",
+    x = "Frequency (Hz)",
+   y = "Mean Absorbance",
+  color = "sex")
 
 
 ```

@@ -11,7 +11,7 @@ BEADING
 
 HIKING:
 I love hiking
-{{< include /Users/berniceabanda/git/bernice2023.github.io/hike.JPG >}}
+
 Living in Southern California, I leverage exploring the outdoors. 
 
 COMMUNITY: club involvments
